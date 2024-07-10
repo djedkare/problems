@@ -55,7 +55,7 @@ It's not enough to have `ocamlformat ocamlformat-rpc ocaml-lsp-server` in the sw
 ## Pretty Printing
 ... is still tedious to me. Thus far, in the small test cases I've written, I've not yet needed the extra control over formatting that `Format`/`Fmt` give me compared to Haskell's `Show` instances. Building default, "`Show`-like" instances such as
 ```ocaml
-let list_ a = Fmt.(brackets (list ~sep:comma a))
+let list_ a = Fmt.(brackets (list ~sep:semi a))
 ```
 or
 ```ocaml
