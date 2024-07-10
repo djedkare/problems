@@ -27,3 +27,6 @@ But in turn, when the values in a list literal with more than one element includ
 
 ## Automatic Code Formatting
 It's not enough to have `ocamlformat ocamlformat-rpc ocaml-lsp-server` in the switch. They will only do their work if there is a `.ocamlformat` file in the project directory. Easy to overlook as it is a dotfile, and thus hidden.
+
+## Pretty Printing
+... is still tedious to me.
