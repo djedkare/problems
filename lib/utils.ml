@@ -1,0 +1,1 @@
+let str_fn_of_pp pp = Format.asprintf "%a" pp

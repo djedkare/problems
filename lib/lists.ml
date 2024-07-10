@@ -1,3 +1,5 @@
+(* Beginner *)
+
 let rec last l =
   match l with
   | [] -> None
@@ -27,3 +29,35 @@ let rec rev l =
 
 let is_palindrome l =
   l = rev l
+
+(* Intermediate *)
+
+type 'a node =
+  | One of 'a 
+  | Many of 'a node list
+
+let rec flatten l =
+  match l with
+  | [] -> []
+  | One a :: t -> a :: flatten t
+  | Many l :: t -> flatten l @ flatten t
+
+let compress l =
+  let rec iter l x =
+    match l with
+    | [] -> []
+    | h :: t -> if h = x then iter t x else h :: iter t h
+  in
+  match l with
+  | [] -> []
+  | h :: t -> h :: iter t h
+
+let pack l =
+  let rec iter l acc =
+    match l with
+    | [] -> []
+    | h :: t ->
+      match acc with
+      | [] -> iter t [h]
+      | x :: _ -> if h = x then iter t (h :: acc) else acc :: iter t []
+    in iter l []
