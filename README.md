@@ -17,7 +17,7 @@ let cases = [
 ]
 ```
 
-It turns out that the semicolon binds less tightly than an anonymous function declaration. That seems useless to me when the semicolon separates list elements, but requires one less pair of braces when a function needs to perform a side effect before returning a value:
+It turns out that the semicolon binds less tightly than an anonymous function declaration. That seems useless to me when the semicolon separates list elements, but when a function needs to perform a side effect before returning a value, it requires one less pair of braces:
 
 ```ocaml
 let f = fun x -> log_fn_call x; do_something_smart_with x
