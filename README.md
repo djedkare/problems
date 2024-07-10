@@ -29,4 +29,4 @@ But in turn, when the values in a list literal with more than one element includ
 It's not enough to have `ocamlformat ocamlformat-rpc ocaml-lsp-server` in the switch. They will only do their work if there is a `.ocamlformat` file in the project directory. Easy to overlook as it is a dotfile, and thus hidden.
 
 ## Pretty Printing
-... is still tedious to me.
+... is still tedious to me. Thus far, in the small test cases I've written, I've not yet needed the extra control over formatting that `Format`/`Fmt` give me compared to Haskell's `Show` instances.
