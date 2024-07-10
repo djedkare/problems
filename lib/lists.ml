@@ -72,6 +72,7 @@ let pack l =
 ;;
 
 module E = struct
+  (* the 4 run length encoding exercises*)
   let encode l =
     let rec iter l (n, x) =
       match l with
@@ -118,3 +119,9 @@ module E = struct
     | h :: t -> iter t (One h)
   ;;
 end
+
+let rec duplicate l =
+  match l with
+  | [] -> []
+  | h :: t -> h :: h :: duplicate t
+;;

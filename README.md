@@ -4,13 +4,14 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 | Beginner | Intermediate | Advanced |
 | :------: | :----------: | :------: |
 | 8        | 5            | 0        |
+(table not updated for every exercise)
 
 ## Lists
 - [X] 6 / 6 Beginner
 - [X] 3 / 3 Intermediate
 - [X] 2 / 2 Beginner Run-Length Encoding
 - [X] 2 / 2 Intermediate Run-Length Encoding
-- [ ] 0 / 15 Remaining (Beginner and Intermediate)
+- [ ] 1 / 15 Remaining (Beginner and Intermediate)
 
 ## Arithmetic
 - [ ] ...

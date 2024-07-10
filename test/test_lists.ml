@@ -82,4 +82,13 @@ let cases_run_length =
   ]
 ;;
 
-let cases = cases_beginner @ cases_intermediate @ cases_run_length
+let cases_rest =
+  [ ("duplicate"
+     >:: fun _ ->
+     assert_equal
+       [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]
+       (L.duplicate [ "a"; "b"; "c"; "c"; "d" ]))
+  ]
+;;
+
+let cases = cases_beginner @ cases_intermediate @ cases_run_length @ cases_rest
