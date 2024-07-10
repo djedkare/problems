@@ -1,4 +1,4 @@
-Solving the [OCaml Exercises](https://ocaml.org/exercises)
+Solving [OCaml Exercises](https://ocaml.org/exercises)
 
 # Progress
 
