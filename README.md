@@ -1,7 +1,7 @@
 # Progress
 
 ## Lists
-- 2 / 6
+- [X] 6 / 6 Beginner
 
 # Notes
 
