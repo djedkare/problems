@@ -10,7 +10,7 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [ ] 0 / 15 Remaining (Beginner and Intermediate)
 
 ## Arithmetic
-- [ ]
+- [ ] ...
 
 ## Logic and Codes
 - [ ]
