@@ -37,4 +37,4 @@ or
 ```ocaml
 let pair_ a b = Fmt.(parens (pair ~sep:comma a b))
 ```
-and a function that turns a `'a Fmt.t` into a `'a -> string` removes most of the hassle. 
+and a function that turns a `'a Fmt.t` into a `'a -> string` removes most of the hassle (but still, why does `OUnit2` work with a different type of pretty-printer than `Format`/`Fmt`? Annoying...). 
