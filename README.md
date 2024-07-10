@@ -1,6 +1,9 @@
 Solving [OCaml Exercises](https://ocaml.org/exercises)
 
 # Progress
+| Beginner | Intermediate | Advanced |
+| :------: | :----------: | :------: |
+| 8        | 5            | 0        |
 
 ## Lists
 - [X] 6 / 6 Beginner
