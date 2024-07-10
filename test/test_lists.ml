@@ -50,4 +50,36 @@ let cases_intermediate =
   ]
 ;;
 
-let cases = cases_beginner @ cases_intermediate
+let cases_run_length =
+  [ ("encode"
+     >:: fun _ ->
+     assert_equal
+       ~printer:(Utils.list_ (Utils.pair_ Fmt.int Fmt.string) |> Utils.str_fn_of_pp)
+       [ 4, "a"; 1, "b"; 2, "c"; 2, "a"; 1, "d"; 4, "e" ]
+       (L.E.encode
+          [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]))
+  ; ("encode_modified"
+     >:: fun _ ->
+     assert_equal
+       L.E.
+         [ Many (4, "a"); One "b"; Many (2, "c"); Many (2, "a"); One "d"; Many (4, "e") ]
+       (L.E.encode_modified
+          [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]))
+  ; ("decode"
+     >:: fun _ ->
+     assert_equal
+       [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
+       (L.E.decode
+          [ Many (4, "a"); One "b"; Many (2, "c"); Many (2, "a"); One "d"; Many (4, "e") ])
+    )
+  ; ("encode_modified_direct"
+     >:: fun _ ->
+     assert_equal
+       L.E.
+         [ Many (4, "a"); One "b"; Many (2, "c"); Many (2, "a"); One "d"; Many (4, "e") ]
+       (L.E.encode_modified_direct
+          [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]))
+  ]
+;;
+
+let cases = cases_beginner @ cases_intermediate @ cases_run_length

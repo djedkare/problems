@@ -5,8 +5,8 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 ## Lists
 - [X] 6 / 6 Beginner
 - [X] 3 / 3 Intermediate
-- [ ] 0 / 2 Beginner Run-Length Encoding
-- [ ] 0 / 2 Intermediate Run-Length Encoding
+- [X] 2 / 2 Beginner Run-Length Encoding
+- [X] 2 / 2 Intermediate Run-Length Encoding
 - [ ] 0 / 15 Remaining (Beginner and Intermediate)
 
 ## Arithmetic
