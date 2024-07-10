@@ -62,3 +62,17 @@ and a function that turns a `'a Fmt.t` into a `'a -> string` removes most of the
 
 ## Constructors
 ... are uncurried by default, unlike in Haskell.
+
+## Module Access
+For how far to the right of the dot does module access change the scope? I would have thought, just for the next "thing" (either a single identifier or an expression wrapped in parens), but at least for type constructors that doesn't seem to be the case:
+```ocaml
+utop # module M = struct
+type a = | A
+let a_fun A = 3 end;;
+module M : sig type a = A val a_fun : a -> int end
+```
+
+```ocaml
+utop # M.a_fun A;;
+- : int = 3
+```
