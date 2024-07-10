@@ -2,6 +2,7 @@
 
 ## Lists
 - [X] 6 / 6 Beginner
+- [X] 3 / 3 Intermediate
 
 # Notes
 

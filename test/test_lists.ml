@@ -35,7 +35,8 @@ let cases_intermediate =
   ; ("pack"
      >:: fun _ ->
      assert_equal
-       ~printer:(Utils.str_fn_of_pp Fmt.(list ~sep:sp (list string)))
+       ~printer:
+         (Utils.str_fn_of_pp Fmt.(list ~sep:sp (string |> list ~sep:nop |> brackets)))
        [ [ "a"; "a"; "a"; "a" ]
        ; [ "b" ]
        ; [ "c"; "c" ]
