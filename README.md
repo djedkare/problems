@@ -13,19 +13,19 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [ ] ...
 
 ## Logic and Codes
-- [ ]
+- [ ] ...
 
 ## Binary Trees
-- [ ]
+- [ ] ...
 
 ## Multiway Trees
-- [ ]
+- [ ] ...
 
 ## Graphs
-- [ ]
+- [ ] ...
 
 ## Miscellaneous
-- [ ]
+- [ ] ...
 
 # Notes
 
