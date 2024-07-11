@@ -1,3 +1,5 @@
+(* 10.07.2024 *)
+
 (* Beginner *)
 
 let rec last l =
@@ -124,4 +126,51 @@ let rec duplicate l =
   match l with
   | [] -> []
   | h :: t -> h :: h :: duplicate t
+;;
+
+(* 11.07.2024 *)
+
+let rec replicate l n =
+  let rec prepend x n l = if n <= 0 then l else x :: prepend x (n - 1) l in
+  match l with
+  | [] -> []
+  | h :: t -> prepend h n (replicate t n)
+;;
+
+let drop l n =
+  if n < 1
+  then raise (Failure "drop")
+  else (
+    let rec iter l i =
+      match l with
+      | [] -> []
+      | h :: t -> if i <= 1 then iter t n else h :: iter t (i - 1)
+    in
+    iter l n)
+;;
+
+let rec split l n =
+  let cons_fst x (a, b) = x :: a, b in
+  match l with
+  | [] -> [], []
+  | h :: t -> if n = 0 then [], h :: t else cons_fst h (split t (n - 1))
+;;
+
+(** behaviour if [n2 > List.length l] is not specified in the problem statement,
+    in this implementation [slice l n1 n2] would return the slice from [n1] to
+    the end of the list *)
+let rec slice l n1 n2 =
+  if n1 <= 0
+  then fst (split l (n2 + 1))
+  else (
+    match l with
+    | [] -> []
+    | _ :: t -> slice t (n1 - 1) (n2 - 1))
+;;
+
+(** [rotate l 0 = l]*)
+let rotate l n =
+  let n_ = n mod length l in
+  match split l n_ with
+  | a, b -> b @ a
 ;;

@@ -2,6 +2,8 @@ open OUnit2
 open Problems
 module L = Problems.Lists
 
+let eq = Test_utils.make_assert_equal_case
+
 let cases_beginner =
   [ ("last none" >:: fun _ -> assert_equal (L.last []) None)
   ; ("last some" >:: fun _ -> assert_equal (L.last [ 2; 3; 4 ]) (Some 4))
@@ -88,6 +90,31 @@ let cases_rest =
      assert_equal
        [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]
        (L.duplicate [ "a"; "b"; "c"; "c"; "d" ]))
+  ; ("replicate"
+     >:: fun _ ->
+     assert_equal
+       [ "a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c" ]
+       (L.replicate [ "a"; "b"; "c" ] 3))
+  ; ("drop"
+     >:: fun _ ->
+     assert_equal
+       [ "a"; "b"; "d"; "e"; "g"; "h"; "j" ]
+       (L.drop [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3))
+  ; ("split"
+     >:: fun _ ->
+     assert_equal
+       ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
+       (L.split [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3))
+  ; ("slice"
+     >:: fun _ ->
+     assert_equal
+       [ "c"; "d"; "e"; "f"; "g" ]
+       (L.slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 2 6))
+  ; eq
+      "rotate"
+      ~pr:(Utils.list_ Fmt.string)
+      [ "d"; "e"; "f"; "g"; "h"; "a"; "b"; "c" ]
+      (L.rotate [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3)
   ]
 ;;
 
