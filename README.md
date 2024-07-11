@@ -80,3 +80,11 @@ module M : sig type a = A val a_fun : a -> int end
 utop # M.a_fun A;;
 - : int = 3
 ```
+## Wrong Labeled Argument
+The error message when a function does not accept a labeled argument of a given name:
+```
+The function applied to this argument has type
+  some_ocaml_type
+This argument cannot be applied with label ~some_label_name
+```
+confused me at first. Turns out the type was irrelevant and I just had a typo in the label name.
