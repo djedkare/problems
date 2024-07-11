@@ -88,3 +88,27 @@ The function applied to this argument has type
 This argument cannot be applied with label ~some_label_name
 ```
 confused me at first. Turns out the type was irrelevant and I just had a typo in the label name.
+
+## Labeled vs Optional Arguments
+### Labeled
+- **Definition**: `~label`
+  - **Or** `~label:local_variable` to expose a labeled argument named `label` but reference it as `local_variable` inside the function's body
+- **Definition Body**: `label` (no tilde)
+- **Type**: `label:type` (no tilde)
+- **Application**: `~label:val`
+  - **Shortcut**: `~label` (if the variable being passed is named `label`)
+
+### Optional
+- **Definition with Default**: `?(label=default)`
+  - **Or** `?label:(local_variable=default)` to expose an optional argument named `label` but reference it as `local_variable` inside the function's body
+- **Definition without Default**: `?label` exposes an option value named `label` inside the function's body
+- **Definition Body**: `label` (no tilde or question mark)
+- **Type**: `?label:type`
+- **Application**: `~label` (tilde)
+- **Application of Option**: `?label:option_value`
+
+### Table
+|              | Definition (left)        | Definition (right) | Type        | Application |
+| --           | --                       | --                 | --          | -- |
+| **Labeled**  | `~lbl`                   | `lbl`              | `lbl:type`  |  |
+| **Optional** | `?lbl` <br> `?(lbl=val)` | `lbl`              | `?lbl:type` | |
