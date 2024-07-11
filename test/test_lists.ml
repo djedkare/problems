@@ -115,6 +115,7 @@ let cases_rest =
       ~pr:(Utils.list_ Fmt.string)
       [ "d"; "e"; "f"; "g"; "h"; "a"; "b"; "c" ]
       (L.rotate [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3)
+  ; eq "remove_at" [ "a"; "c"; "d" ] (L.remove_at 1 [ "a"; "b"; "c"; "d" ])
   ]
 ;;
 
