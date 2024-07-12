@@ -111,4 +111,4 @@ confused me at first. Turns out the labeled argument's type was irrelevant - I j
 |              | Definition (left)        | Definition (right) | Type        | Application               |
 | --           | --                       | --                 | --          | --                        |
 | **Labeled**  | `~lbl`                   | `lbl`              | `lbl:type`  | `~lbl:val` (short `~lbl`) |
-| **Optional** | `?lbl` <br> `?(lbl=val)` | `lbl`              | `?lbl:type` | `~lbl:val` (short `~lbl`) |
+| **Optional** | `?(lbl=val)` <br> `?lbl` (`lbl` will be an option in the definition's body) | `lbl`              | `?lbl:type` | `~lbl:val` (short `~lbl`) <br> `?lbl:val` if `val` is and option |
