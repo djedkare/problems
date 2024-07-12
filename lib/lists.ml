@@ -180,3 +180,66 @@ let rec remove_at n l =
   | [] -> []
   | h :: t -> if n <= 0 then t else h :: remove_at (n - 1) t
 ;;
+
+(** [insert_at s 0 l = s :: l]*)
+let rec insert_at s i l =
+  match l with
+  | [] -> [ s ]
+  | h :: t -> if i <= 0 then s :: l else h :: insert_at s (i - 1) t
+;;
+
+(** [range n n = [ n ]]*)
+let rec range n1 n2 =
+  if n1 = n2
+  then [ n1 ]
+  else if n1 < n2
+  then n1 :: range (n1 + 1) n2
+  else n1 :: range (n1 - 1) n2
+;;
+
+(** test with [Random.init 0] (no test case yet!) *)
+let rand_select l n =
+  let rec select l ns =
+    match ns with
+    | [] -> []
+    | nh :: nt -> nth l nh :: select l nt
+  in
+  let rec get_rand_vals len n =
+    if n <= 0 then [] else Random.int len :: get_rand_vals (len - 1) (n - 1)
+  in
+  let rec inc lower l =
+    match l with
+    | [] -> []
+    | h :: t -> (if h >= lower then h + 1 else h) :: inc lower t
+  in
+  let rec correct_rand_vals l =
+    match l with
+    | [] -> []
+    | h :: t -> h :: correct_rand_vals (inc h t)
+  in
+  get_rand_vals (length l) n |> correct_rand_vals |> select l
+;;
+
+(** [n <= m] *)
+let lotto_select n m = rand_select (range 1 m) n
+
+let permutation l = rand_select l (length l)
+
+let rec extract n l =
+  let rec concat l1 l2 =
+    match l1 with
+    | [] -> l2
+    | h :: t -> h :: concat t l2
+  in
+  let rec cons_to_all l x =
+    match l with
+    | [] -> []
+    | h :: t -> (x :: h) :: cons_to_all t x
+  in
+  if n <= 0
+  then [ [] ]
+  else (
+    match l with
+    | [] -> []
+    | h :: t -> concat (cons_to_all (extract (n - 1) t) h) (extract n t))
+;;

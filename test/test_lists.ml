@@ -117,6 +117,22 @@ let cases_rest =
       (L.rotate [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h" ] 3)
   ; eq "remove_at" [ "a"; "c"; "d" ] (L.remove_at 1 [ "a"; "b"; "c"; "d" ])
   ; eq "remove_at" [ "a"; "c"; "d" ] (L.remove_at 1 [ "a"; "b"; "c"; "d" ])
+  ; eq
+      "insert_at"
+      [ "a"; "alfa"; "b"; "c"; "d" ]
+      (L.insert_at "alfa" 1 [ "a"; "b"; "c"; "d" ])
+  ; eq "range inc" [ 4; 5; 6; 7; 8; 9 ] (L.range 4 9)
+  ; eq "range dec" [ 9; 8; 7; 6; 5; 4 ] (L.range 9 4)
+  ; eq
+      "extract"
+      [ [ "a"; "b" ]
+      ; [ "a"; "c" ]
+      ; [ "a"; "d" ]
+      ; [ "b"; "c" ]
+      ; [ "b"; "d" ]
+      ; [ "c"; "d" ]
+      ]
+      (L.extract 2 [ "a"; "b"; "c"; "d" ])
   ]
 ;;
 
