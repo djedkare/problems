@@ -87,7 +87,7 @@ The function applied to this argument has type
   some_ocaml_type
 This argument cannot be applied with label ~some_label_name
 ```
-confused me at first. Turns out the type was irrelevant and I just had a typo in the label name.
+confused me at first. Turns out the labeled argument's type was irrelevant - I just had a typo in the label name.
 
 ## Labeled vs Optional Arguments
 ### Labeled
@@ -108,7 +108,7 @@ confused me at first. Turns out the type was irrelevant and I just had a typo in
 - **Application of Option**: `?label:option_value`
 
 ### Table
-|              | Definition (left)        | Definition (right) | Type        | Application |
-| --           | --                       | --                 | --          | -- |
-| **Labeled**  | `~lbl`                   | `lbl`              | `lbl:type`  |  |
-| **Optional** | `?lbl` <br> `?(lbl=val)` | `lbl`              | `?lbl:type` | |
+|              | Definition (left)        | Definition (right) | Type        | Application               |
+| --           | --                       | --                 | --          | --                        |
+| **Labeled**  | `~lbl`                   | `lbl`              | `lbl:type`  | `~lbl:val` (short `~lbl`) |
+| **Optional** | `?lbl` <br> `?(lbl=val)` | `lbl`              | `?lbl:type` | `~lbl:val` (short `~lbl`) |
