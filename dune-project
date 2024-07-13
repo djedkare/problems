@@ -5,11 +5,11 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github djedkare/problems))
 
-(authors "Author Name")
+(authors "Frederic Arnold")
 
-(maintainers "Maintainer Name")
+(maintainers "Frederic Arnold")
 
 (license LICENSE)
 
