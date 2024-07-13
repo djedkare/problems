@@ -133,6 +133,7 @@ let cases_rest =
       ; [ "c"; "d" ]
       ]
       (L.extract 2 [ "a"; "b"; "c"; "d" ])
+  ; eq "group empty" [ [ []; []; [] ] ] (L.group [ "a"; "b"; "c"; "d"; "e" ] [ 0; 0; 0 ])
   ]
 ;;
 

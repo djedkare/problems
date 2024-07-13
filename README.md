@@ -112,3 +112,41 @@ confused me at first. Turns out the labeled argument's type was irrelevant - I j
 | --           | --                       | --                 | --          | --                        |
 | **Labeled**  | `~lbl`                   | `lbl`              | `lbl:type`  | `~lbl:val` (short `~lbl`) |
 | **Optional** | `?(lbl=val)` <br> `?lbl` (`lbl` will be an option in the definition's body) | `lbl`              | `?lbl:type` | `~lbl:val` (short `~lbl`) <br> `?lbl:val` if `val` is and option |
+
+## Dune Profiles
+By default, `dune build`, `dune test` etc. error on any Warning. That is not useful behaviour to me: When I have written a test case for an unfinished function, I want to be able to run that test right away, without having to replace every unused argument with `_` and remove every superfluous `rec` from a `let` in the function's definition, "fixes" I'd only need to undo later. The answer seem to be `dune`'s build profiles: I can change that default behaviour with an `(env ...)` stanza, for example in a `dune` file or a `dune-workspace` file (are there others?).
+
+For me, it was enough to have a single profile that does the default thing, except it doesn't escalate warnings into errors. For that, I had to write this into the project root's `dune` file:
+
+```
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A))))
+```
+
+While that's sufficient for this informal project and so I'll stick with it, I did try to add a second profile with different behaviour and failed. When I wrote
+```
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A)))
+ (strict))
+```
+into the project's root directory's `dune` file, it didn't have an impact: `dune build` still displayed warnings. But calling `dune build --profile` with `strict`, or any profile name (except `dev`) for that matter, changes to a different behaviour: ignoring warnings.
+
+Is the `dev` profile the only one I can use because it is predefined and all build profiles need to be declared in some place? I don't think so: changes to the `release` profile also get ignored:
+
+```
+(env
+ (release
+  (flags
+   (:standard -w -A -warn-error -A)))
+ (dev
+  (flags
+   (:standard -warn-error -A))))
+```
+
+My sleuthing into dune profiles is not helped by dune seemingly ignoring any profile name passed to it via `--profile` it doesn't recognize. Also, I don't know how to force dune to recompile an unchanged source file, so I have to keep changing the value of some dummy variable between calls to `dune build`. Having read ghrough every section of the dune docs relevant to profiles, I'm still clueless. Annoying.
+
+(To be honest, my ignorance of the difference between `dune` and `dune-workspace` files, and between build profiles and build contexts, doesn't help me either.)

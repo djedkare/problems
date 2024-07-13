@@ -243,3 +243,10 @@ let rec extract n l =
     | [] -> []
     | h :: t -> concat (cons_to_all (extract (n - 1) t) h) (extract n t))
 ;;
+
+(** [ group [1; 2; 3; 4; 5] [0; 0; 0] = [[[];[];[]]] ] one result, the empty grouping
+    [ group [] [0; 1; 0] = [] ] no result
+    [ group [1; 2; 3; 4; 5] [1; 0; 2] = modify (1 ::) 0 (group [2; 3; 4; 5] [0; 0; 2]) @ modify (1 ::) 2 (group [2; 3; 4; 5] [1; 0; 1]) @ group [2; 3; 4; 5] [1; 0; 2] ] many results (or none) *)
+let rec group l groups =
+  if List.for_all (fun n -> n = 0) groups then [ List.map (fun _ -> []) groups ] else []
+;;
