@@ -225,16 +225,17 @@ let lotto_select n m = rand_select (range 1 m) n
 
 let permutation l = rand_select l (length l)
 
+let rec cons_to_all l x =
+  match l with
+  | [] -> []
+  | h :: t -> (x :: h) :: cons_to_all t x
+;;
+
 let rec extract n l =
   let rec concat l1 l2 =
     match l1 with
     | [] -> l2
     | h :: t -> h :: concat t l2
-  in
-  let rec cons_to_all l x =
-    match l with
-    | [] -> []
-    | h :: t -> (x :: h) :: cons_to_all t x
   in
   if n <= 0
   then [ [] ]
@@ -244,9 +245,50 @@ let rec extract n l =
     | h :: t -> concat (cons_to_all (extract (n - 1) t) h) (extract n t))
 ;;
 
-(** [ group [1; 2; 3; 4; 5] [0; 0; 0] = [[[];[];[]]] ] one result, the empty grouping
-    [ group [] [0; 1; 0] = [] ] no result
-    [ group [1; 2; 3; 4; 5] [1; 0; 2] = modify (1 ::) 0 (group [2; 3; 4; 5] [0; 0; 2]) @ modify (1 ::) 2 (group [2; 3; 4; 5] [1; 0; 1]) @ group [2; 3; 4; 5] [1; 0; 2] ] many results (or none) *)
-let rec group l groups =
-  if List.for_all (fun n -> n = 0) groups then [ List.map (fun _ -> []) groups ] else []
+let rec flatten_list l =
+  match l with
+  | [] -> []
+  | h :: t -> h @ flatten_list t
+;;
+
+let rec map f l =
+  match l with
+  | [] -> []
+  | h :: t -> f h :: map f t
+;;
+
+let concat_map f l = flatten_list (map f l)
+
+(** returns a list of pairs of both the selection and the elements not selected *)
+let rec extract2 (n : int) (l : 'a list) : ('a list * 'a list) list =
+  let rec map_cons_snd (x : 't2) (l : ('t1 * 't2 list) list) : ('t1 * 't2 list) list =
+    let cons_snd (a, b) = a, x :: b in
+    match l with
+    | [] -> []
+    | h :: t -> cons_snd h :: map_cons_snd x t
+  in
+  let rec map_cons_fst x l (* (x : 'a) (l : ('a list * 'b) list) : ('a list * 'b) list *) =
+    let cons_fst (a, b) = x :: a, b in
+    match l with
+    | [] -> []
+    | h :: t -> cons_fst h :: map_cons_fst x t
+  in
+  if n <= 0
+  then [ [], l ]
+  else (
+    match l with
+    | [] -> []
+    | h :: t -> map_cons_fst h (extract2 (n - 1) t) @ map_cons_snd h (extract2 n t))
+;;
+
+(** a subset is of ['elem list], a solution is of ['elem list list] *)
+let rec group (elems : 'elem list) (groups : int list) : 'elem list list list =
+  match groups with
+  | [] -> [ [] ]
+  | gh :: gt ->
+    let extractions : ('elem list * 'elem list) list = extract2 gh elems in
+    let f ((choice : 'elem list), (rest : 'elem list)) : 'elem list list list =
+      map (fun solution -> choice :: solution) (group rest gt)
+    in
+    concat_map f extractions
 ;;

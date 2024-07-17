@@ -33,6 +33,9 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 
 # Notes
 
+## Using Standard Library Functions
+Some of the easy exercises are reimplementations of standard library functions. The harder exercises are tedious to solve without using `List.map` etc. I think I solved too many exercises implementing every little helper function myself.
+
 ## Semicolons and Functions
 The compiler complained when I wrote this `OUnit2` case list:
 ```ocaml
@@ -65,7 +68,7 @@ let pair_ a b = Fmt.(parens (pair ~sep:comma a b))
 and a function that turns a `'a Fmt.t` into a `'a -> string` removes most of the hassle (but still, why does `OUnit2` work with a different type of pretty-printer than `Format`/`Fmt`? Annoying...).
 
 ## Constructors
-... are uncurried by default, unlike in Haskell.
+... are uncurried, unlike in Haskell.
 
 ## Module Access
 For how far to the right of the dot does module access change the scope? I would have thought, just for the next "thing" (either a single identifier or an expression wrapped in parens), but at least for type constructors that doesn't seem to be the case:
@@ -150,3 +153,16 @@ Is the `dev` profile the only one I can use because it is predefined and all bui
 My sleuthing into dune profiles is not helped by dune seemingly ignoring any profile name passed to it via `--profile` it doesn't recognize. Also, I don't know how to force dune to recompile an unchanged source file, so I have to keep changing the value of some dummy variable between calls to `dune build`. Having read ghrough every section of the dune docs relevant to profiles, I'm still clueless. Annoying.
 
 (To be honest, my ignorance of the difference between `dune` and `dune-workspace` files, and between build profiles and build contexts, doesn't help me either.)
+
+## Type Variables in Local Definitions
+```ocaml
+let id (x : 'a * 'b) : 'a * 'b = let f (y : 'b * 'a) : ('b * 'a) = y in f x;;
+```
+gives
+```
+Error: This expression has type 'a list but an expression was expected of type
+         'a
+       The type variable 'a occurs inside 'a list
+```
+
+So type annotations of local definitions may reference type variables of enclosing type annotations. Not ok to reuse generic names like `'a`.
