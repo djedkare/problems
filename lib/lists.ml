@@ -281,7 +281,7 @@ let rec extract2 (n : int) (l : 'a list) : ('a list * 'a list) list =
     | h :: t -> map_cons_fst h (extract2 (n - 1) t) @ map_cons_snd h (extract2 n t))
 ;;
 
-(** a subset is of ['elem list], a solution is of ['elem list list] *)
+(** returns the results in a different order than the official solution *)
 let rec group (elems : 'elem list) (groups : int list) : 'elem list list list =
   match groups with
   | [] -> [ [] ]
@@ -291,4 +291,29 @@ let rec group (elems : 'elem list) (groups : int list) : 'elem list list list =
       map (fun solution -> choice :: solution) (group rest gt)
     in
     concat_map f extractions
+;;
+
+let rec sort (f : 'a -> int) (l : 'a list) : 'a list =
+  let rec insert (x : 'a) (l : 'a list) : 'a list =
+    match l with
+    | [] -> [ x ]
+    | h :: t -> if f x <= f h then x :: l else h :: insert x t
+  in
+  match l with
+  | [] -> []
+  | h :: t -> insert h (sort f t)
+;;
+
+let length_sort ll = sort length ll
+
+let rec count p l =
+  match l with
+  | [] -> 0
+  | h :: t -> (if p h then 1 else 0) + count p t
+;;
+
+(** returns the results in a different order than the official solution *)
+let frequency_sort ll =
+  let f l = count (fun x -> length x = length l) ll in
+  sort f ll
 ;;

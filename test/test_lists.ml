@@ -135,6 +135,25 @@ let cases_rest =
       (L.extract 2 [ "a"; "b"; "c"; "d" ])
   ; eq "group empty" [ [ []; []; [] ] ] (L.group [ "a"; "b"; "c"; "d"; "e" ] [ 0; 0; 0 ])
   ; eq "group impossible" [] (L.group [] [ 0; 1; 0 ])
+  ; eq
+      "length_sort"
+      [ [ "o" ]
+      ; [ "d"; "e" ]
+      ; [ "d"; "e" ]
+      ; [ "m"; "n" ]
+      ; [ "a"; "b"; "c" ]
+      ; [ "f"; "g"; "h" ]
+      ; [ "i"; "j"; "k"; "l" ]
+      ]
+      (L.length_sort
+         [ [ "a"; "b"; "c" ]
+         ; [ "d"; "e" ]
+         ; [ "f"; "g"; "h" ]
+         ; [ "d"; "e" ]
+         ; [ "i"; "j"; "k"; "l" ]
+         ; [ "m"; "n" ]
+         ; [ "o" ]
+         ])
   ]
 ;;
 

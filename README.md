@@ -3,15 +3,15 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 # Progress
 | Beginner | Intermediate | Advanced |
 | :------: | :----------: | :------: |
-| 8        | 5            | 0        |
-(table not updated for every exercise)
+| 15       | 13           | 0        |
+(table not always up to date)
 
-## Lists
+## :white_check_mark: Lists
 - [X] 6 / 6 Beginner
 - [X] 3 / 3 Intermediate
 - [X] 2 / 2 Beginner Run-Length Encoding
 - [X] 2 / 2 Intermediate Run-Length Encoding
-- [ ] 1 / 15 Remaining (Beginner and Intermediate)
+- [X] 15 / 15 Remaining (Beginner and Intermediate)
 
 ## Arithmetic
 - [ ] ...
