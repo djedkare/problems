@@ -14,22 +14,22 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 15 / 15 Remaining (Beginner and Intermediate)
 
 ## Arithmetic
-- [ ] ...
+- [ ] 0 / 11
 
 ## Logic and Codes
-- [ ] ...
+- [ ] 0 / 4
 
 ## Binary Trees
-- [ ] ...
+- [ ] 0 / 17
 
 ## Multiway Trees
-- [ ] ...
+- [ ] 0 / 5
 
 ## Graphs
-- [ ] ...
+- [ ] 0 / 11
 
 ## Miscellaneous
-- [ ] ...
+- [ ] 0 / 9
 
 # Notes
 
