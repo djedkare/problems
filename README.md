@@ -4,6 +4,7 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 | Beginner | Intermediate | Advanced |
 | :------: | :----------: | :------: |
 | 15       | 13           | 0        |
+
 (table not always up to date)
 
 ## :white_check_mark: Lists
