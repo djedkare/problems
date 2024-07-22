@@ -13,7 +13,8 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 15 / 15 Remaining (Beginner and Intermediate)
 
 ## Arithmetic
-- [ ] 0 / 11
+- [ ] 0 / 3 Beginner
+- [ ] 0 / 8 Intermediate
 
 ## Logic and Codes
 - [ ] 0 / 4
