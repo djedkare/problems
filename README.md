@@ -5,8 +5,6 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 | :------: | :----------: | :------: |
 | 15       | 13           | 0        |
 
-(table not always up to date)
-
 ## :white_check_mark: Lists
 - [X] 6 / 6 Beginner
 - [X] 3 / 3 Intermediate
