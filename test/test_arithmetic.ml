@@ -16,5 +16,6 @@ let cases =
   ; eq "phi 10" 4 (A.phi 10)
   ; eq "factors 315" [ 3; 3; 5; 7 ] (A.factors 315)
   ; eq "factors2 315" [ 3, 2; 5, 1; 7, 1 ] (A.factors2 315)
+  ; eq "length of (all_primes 2 7920)" 1000 (List.length (A.all_primes 2 7920))
   ]
 ;;

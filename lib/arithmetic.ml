@@ -60,16 +60,40 @@ let phi_improved (m : int) : int =
 (* example. *)
 
 (* copied straight from the solution tbh *)
-let timeit f a =
-  let t0 = Unix.gettimeofday () in
-  ignore (f a);
-  let t1 = Unix.gettimeofday () in
-  t1 -. t0
-;;
+(* let timeit f a =
+   let t0 = Unix.gettimeofday () in
+   ignore (f a);
+   let t1 = Unix.gettimeofday () in
+   t1 -. t0
+   ;; *)
 
 let all_primes (lower : int) (upper : int) : int list =
   List.filter is_prime (range lower (upper + 1))
 ;;
 
-let goldbach (n : int) : int * int = 0, 0
-let goldbach_list (_ : int) (_ : int) : (int * (int * int)) list = []
+let goldbach (n : int) : int * int =
+  if n mod 2 <> 0
+  then raise (Failure "goldbach: input not even")
+  else if n <= 2
+  then raise (Failure "goldbach: input too small")
+  else (
+    let fst_prime = List.find (fun p -> is_prime (n - p)) (all_primes 2 n) in
+    fst_prime, n - fst_prime)
+;;
+
+let goldbach_list (lower : int) (upper : int) : (int * (int * int)) list =
+  range lower (upper + 1)
+  |> List.filter (fun n -> n mod 2 = 0 && n > 2)
+  |> List.map (fun n -> n, goldbach n)
+;;
+
+let goldbach_list_large (lower : int) (upper : int) : (int * (int * int)) list =
+  goldbach_list lower upper |> List.filter (fun (_, (a, b)) -> a > 50 && b > 50)
+;;
+
+(* 10 results under 3000: *)
+(* utop # goldbach_list_large 0 3000;;
+   - : (int * (int * int)) list =
+     [(992, (73, 919)); (1382, (61, 1321)); (1856, (67, 1789)); (1928, (61, 1867));
+ (2078, (61, 2017)); (2438, (61, 2377)); (2512, (53, 2459));
+ (2530, (53, 2477)); (2618, (61, 2557)); (2642, (103, 2539))] *)

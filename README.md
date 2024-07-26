@@ -3,7 +3,7 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 # Progress
 | Beginner | Intermediate | Advanced |
 | :------: | :----------: | :------: |
-| 15       | 13           | 0        |
+| 18       | 21           | 0        |
 
 ## :white_check_mark: Lists
 - [X] 6 / 6 Beginner
@@ -12,9 +12,9 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 2 / 2 Intermediate Run-Length Encoding
 - [X] 15 / 15 Remaining (Beginner and Intermediate)
 
-## Arithmetic
-- [ ] 0 / 3 Beginner
-- [ ] 0 / 8 Intermediate
+## :white_check_mark: Arithmetic
+- [X] 0 / 3 Beginner
+- [X] 0 / 8 Intermediate
 
 ## Logic and Codes
 - [ ] 0 / 4
