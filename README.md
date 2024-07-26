@@ -17,7 +17,8 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 0 / 8 Intermediate
 
 ## Logic and Codes
-- [ ] 0 / 4
+- [ ] 0 / 3 Intermediate
+- [ ] 0 / 1 Advanced
 
 ## Binary Trees
 - [ ] 0 / 17
