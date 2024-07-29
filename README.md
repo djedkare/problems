@@ -3,7 +3,7 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 # Progress
 | Beginner | Intermediate | Advanced |
 | :------: | :----------: | :------: |
-| 18       | 21           | 0        |
+| 18       | 24           | 1        |
 
 ## :white_check_mark: Lists
 - [X] 6 / 6 Beginner
@@ -16,9 +16,9 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 0 / 3 Beginner
 - [X] 0 / 8 Intermediate
 
-## Logic and Codes
-- [ ] 0 / 3 Intermediate
-- [ ] 0 / 1 Advanced
+## :white_check_mark: Logic and Codes
+- [X] 0 / 3 Intermediate
+- [X] 0 / 1 Advanced
 
 ## Binary Trees
 - [ ] 0 / 17

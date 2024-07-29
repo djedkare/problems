@@ -56,3 +56,27 @@ let rec gray n =
     let prepend str0 str1 = str0 ^ str1 in
     List.map (prepend "0") x @ List.map (prepend "1") (List.rev x))
 ;;
+
+let huffman (freqs : (string * int) list) : (string * string) list =
+  let open struct
+    type tree =
+      | Tree of (tree * tree)
+      | Leaf of string
+  end in
+  let leaves_of_freqs = freqs |> List.map (fun (s, n) -> Leaf s, n) in
+  let rec tree_of_list l =
+    match List.sort (fun (_, n0) (_, n1) -> n0 - n1) l with
+    | [] -> raise (Failure "huffman: empty list")
+    | [ (tr, _) ] -> tr
+    | (tr0, n0) :: (tr1, n1) :: rest -> (Tree (tr0, tr1), n0 + n1) :: rest |> tree_of_list
+  in
+  let the_tree = tree_of_list leaves_of_freqs in
+  let rec decode_tree tr =
+    match tr with
+    | Leaf s -> [ s, "" ]
+    | Tree (tr0, tr1) ->
+      List.map (fun (s, code) -> s, "0" ^ code) (decode_tree tr0)
+      @ List.map (fun (s, code) -> s, "1" ^ code) (decode_tree tr1)
+  in
+  decode_tree the_tree
+;;
