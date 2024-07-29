@@ -63,20 +63,18 @@ let huffman (freqs : (string * int) list) : (string * string) list =
       | Tree of (tree * tree)
       | Leaf of string
   end in
-  let leaves_of_freqs = freqs |> List.map (fun (s, n) -> Leaf s, n) in
-  let rec tree_of_list l =
+  let rec tree_of_list (l : (tree * int) list) : tree =
     match List.sort (fun (_, n0) (_, n1) -> n0 - n1) l with
     | [] -> raise (Failure "huffman: empty list")
     | [ (tr, _) ] -> tr
     | (tr0, n0) :: (tr1, n1) :: rest -> (Tree (tr0, tr1), n0 + n1) :: rest |> tree_of_list
   in
-  let the_tree = tree_of_list leaves_of_freqs in
-  let rec decode_tree tr =
+  let rec decode_tree (tr : tree) : (string * string) list =
     match tr with
     | Leaf s -> [ s, "" ]
     | Tree (tr0, tr1) ->
       List.map (fun (s, code) -> s, "0" ^ code) (decode_tree tr0)
       @ List.map (fun (s, code) -> s, "1" ^ code) (decode_tree tr1)
   in
-  decode_tree the_tree
+  freqs |> List.map (fun (s, n) -> Leaf s, n) |> tree_of_list |> decode_tree
 ;;
