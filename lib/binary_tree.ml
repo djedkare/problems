@@ -43,3 +43,27 @@ let rec cbal_tree (n_old : int) : char binary_tree list =
       let trl1 = cbal_tree n_halves_rounded_up in
       product_map make_tree trl0 trl1 @ product_map make_tree trl1 trl0))
 ;;
+
+let rec is_mirror tr0 tr1 =
+  match tr0, tr1 with
+  | Empty, Empty -> true
+  | Empty, Node (_, _, _) -> false
+  | Node (_, _, _), Empty -> false
+  | Node (_, ltr0, ltr1), Node (_, rtr0, rtr1) ->
+    is_mirror ltr0 rtr1 && is_mirror ltr1 rtr0
+;;
+
+let is_symmetric (tr : 'a binary_tree) : bool = is_mirror tr tr
+
+let rec construct (l : int list) : int binary_tree =
+  match l with
+  | [] -> Empty
+  | h :: t ->
+    Node
+      ( h
+      , t |> List.filter (fun n -> n < h) |> construct
+      , t |> List.filter (fun n -> n > h) |> construct )
+;;
+
+(** all symmetric, completely balanced trees of size [n] *)
+let sym_cbal_trees n = cbal_tree n |> List.filter is_symmetric
