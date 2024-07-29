@@ -21,7 +21,9 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 1 / 1 Advanced
 
 ## Binary Trees
-- [ ] 0 / 17
+- [ ] 0 / 4 Beginner
+- [ ] 0 / 12 Intermediate
+- [ ] 0 / 1 Advanced
 
 ## Multiway Trees
 - [ ] 0 / 5
