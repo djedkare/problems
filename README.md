@@ -13,12 +13,12 @@ Solving [OCaml Exercises](https://ocaml.org/exercises)
 - [X] 15 / 15 Remaining (Beginner and Intermediate)
 
 ## :white_check_mark: Arithmetic
-- [X] 0 / 3 Beginner
-- [X] 0 / 8 Intermediate
+- [X] 3 / 3 Beginner
+- [X] 8 / 8 Intermediate
 
 ## :white_check_mark: Logic and Codes
-- [X] 0 / 3 Intermediate
-- [X] 0 / 1 Advanced
+- [X] 3 / 3 Intermediate
+- [X] 1 / 1 Advanced
 
 ## Binary Trees
 - [ ] 0 / 17
