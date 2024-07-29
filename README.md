@@ -65,6 +65,6 @@ At first, I put the ```List.sort``` inside the match expression:
 match l with
     | [] -> raise (Failure "huffman: empty list")
     | [ (tr, _) ] -> tr
-    | (tr0, n0) :: (tr1, n1) :: rest -> (Tree (tr0, tr1), n0 + n1) :: List.sort (fun (_, n0) (_, n1) -> n0 - n1) rest |> tree_of_list
+    | (tr0, n0) :: (tr1, n1) :: rest -> (Tree (tr0, tr1), n0 + n1) :: rest |> List.sort (fun (_, n0) (_, n1) -> n0 - n1) |> tree_of_list
 ```
 That does the right thing on every recursive call - but not on the original call, when the input list is still unsorted.
