@@ -17,5 +17,6 @@ let cases =
       (B.is_symmetric (B.construct [ 5; 3; 18; 1; 4; 12; 21 ]))
   ; eq "not is_symmetric construct" false (B.is_symmetric (B.construct [ 3; 2; 5; 7; 4 ]))
   ; eq "sym_cbal_trees" 256 (List.length (B.sym_cbal_trees 57))
+  ; eq "hbal_tree" 15 (List.length (B.hbal_tree 3))
   ]
 ;;

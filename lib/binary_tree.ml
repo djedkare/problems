@@ -1,3 +1,4 @@
+(* open Utils *)
 type 'a binary_tree =
   | Empty
   | Node of 'a * 'a binary_tree * 'a binary_tree
@@ -67,3 +68,37 @@ let rec construct (l : int list) : int binary_tree =
 
 (** all symmetric, completely balanced trees of size [n] *)
 let sym_cbal_trees n = cbal_tree n |> List.filter is_symmetric
+
+(** generate all height-balanced trees of height [h]:
+    A height-balanced tree is one where for every node, the right
+    and left subtree's heights differ by at most one. *)
+let rec hbal_tree (h : int) : char binary_tree list =
+  let make_tree tr0 tr1 = Node ('x', tr0, tr1) in
+  if h < 0
+  then []
+  else if h = 0
+  then [ Empty ]
+  else if h = 1
+  then [ make_tree Empty Empty ]
+  else (
+    let minus_1 = hbal_tree (h - 1) in
+    let minus_2 = hbal_tree (h - 2) in
+    product_map make_tree minus_1 minus_1
+    @ product_map make_tree minus_1 minus_2
+    @ product_map make_tree minus_2 minus_1)
+;;
+
+(* Construct Height-Balanced Binary Trees With a Given Number of Nodes *)
+
+(* helper functions *)
+let max_nodes h = (1 lsl h) - 1
+
+let rec min_nodes h =
+  if h = 0 then 0 else if h = 1 then 1 else 1 + min_nodes (h - 1) + min_nodes (h - 2)
+;;
+
+(* inverse of max_nodes *)
+let min_height n = Float.(n |> of_int |> log2 |> to_int) (* to_int rounds down *)
+
+(* the solution *)
+let hbal_tree_nodes n = raise (Failure (string_of_int n))
