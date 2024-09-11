@@ -90,6 +90,10 @@ let rec hbal_tree (h : int) : char binary_tree list =
 
 (* Construct Height-Balanced Binary Trees With a Given Number of Nodes *)
 
+(* tree with 0 nodes: height 0 *)
+(* tree with 1 nodes: height 1 *)
+(* tree with 2 nodes: height 2 *)
+
 (* helper functions *)
 let max_nodes h = (1 lsl h) - 1
 
@@ -102,3 +106,31 @@ let min_height n = Float.(n |> of_int |> log2 |> to_int) (* to_int rounds down *
 
 (* the solution *)
 let hbal_tree_nodes n = raise (Failure (string_of_int n))
+
+let rec count_leaves tr =
+  match tr with
+  | Empty -> 0
+  | Node (_, Empty, Empty) -> 1
+  | Node (_, l, r) -> count_leaves l + count_leaves r
+;;
+
+let rec leaves tr =
+  match tr with
+  | Empty -> []
+  | Node (x, Empty, Empty) -> [ x ]
+  | Node (_, l, r) -> leaves l @ leaves r
+;;
+
+let rec internal tr =
+  match tr with
+  | Empty -> []
+  | Node (_, Empty, Empty) -> []
+  | Node (x, l, r) -> (x :: internal l) @ internal r (* pre-order *)
+;;
+
+let rec at_level tr n =
+  match tr with
+  | Empty -> []
+  | Node (x, l, r) ->
+    if n < 1 then [] else if n = 1 then [ x ] else at_level l (n - 1) @ at_level r (n - 1)
+;;
